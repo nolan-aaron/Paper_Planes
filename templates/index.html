@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+<!-- CONTENT START -->
+{% block content %}
+
+<!-- POSTS -->
+{% for post in posts %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#" id="user">{{ post.username }}</a>
+            <small>{{ post.posted }}</small>
+        </div>
+        <p class="article-content">{{ post.content }}</p>
+    </div>
+</article>
+{% endfor %}
+
+<!-- CONTENT END -->
+{% endblock content %}

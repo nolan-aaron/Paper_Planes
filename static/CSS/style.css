@@ -1,0 +1,111 @@
+body {
+  background: #121212;
+  color: #333333;
+}
+
+#main-container {
+    margin-top: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: rgb(255, 255, 255, 0.87);
+}
+
+small {
+    color: rgb(255, 255, 255, 0.60);
+
+}
+
+.nav-dark {
+  background-color: #121212;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.content-section {
+  background: #212121;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 0.75px solid rgb(255, 255, 255, 0.38)
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.sidebar-list {
+    padding: 10px 10px;
+    margin: 4px;
+    border-radius: 5px;
+    list-style-type: none;
+    color: rgb(255, 255, 255, 0.87);
+    background-color: #424242;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#user {
+    color: #007bff;
+}
+
+#titleWithSvg {
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+#svgWithTitle {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  .button:active {
+    box-shadow: 0px 1px #666;
+    transform: translateY(2px);
+  }
+
+  fieldset div {
+    color: rgb(255, 255, 255, 0.87);
+  }
+
+  .dark-form, .dark-form:focus {
+    background-color: #424242;
+    border-color: #424242;
+    color: rgb(255, 255, 255, 0.87);
+  }

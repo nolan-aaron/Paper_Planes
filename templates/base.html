@@ -1,92 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+<head>
+  <!-- META -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{% block title %} {% endblock %}</title>
-  </head>
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-  <header>
+  <!-- LOCAL CSS -->
+  <link rel="stylesheet" href="/static/CSS/style.css" />
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mb-0 h1 font-weight-bold" href="#">APPLICATION</a>
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
+  <!-- TITLE -->
+  {% if title %}
+  <title>Twitter - {{title}}</title>
+  {% else %}
+  <title>Twitter</title>
+  {% endif %}
+  </title>
+</head>
+
+<header>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-md navbar-dark nav-dark">
+
+    <!-- TITLE -->
+    <div class="container">
+      <a class="navbar-brand mr-4 font-weight-bold" href="/">Twitter</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item dropdown">
-                <a
-                class="nav-link"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >
-                Events
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">XYZ</a>
-                </div>
-
-            </li>
-
-            <!-- Register/Login goes here -->
-            </form>
+      <!-- LEFT SIDE -->
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="{{ url_for('index') }}">Home</a>
+          <a class="nav-item nav-link" href="#">About</a>
         </div>
-        </nav>
 
-    <!-- FLASH MESSAGES -->
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <ul class="flashes">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% endwith %} {% block body %}{% endblock %}
-  </header>
+        <!-- RIGHT SIDE -->
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+          <a class="nav-item nav-link" href="{{ url_for('register') }}">Sign Up</a>
+        </div>
+      </div>
 
-  <body>
-    {% block content %} {% endblock %}
+    </div>
+  </nav>
+</header>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<body>
+  <main role=" main" class="container" id="main-container">
+
+    <!-- MAIN -->
+    <div class="row">
+      <div class="col-lg-8">
+
+        <!-- FLASH MESSAGES -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- CONTENT -->
+        {% block content %}
+        {% endblock %}
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        <div class="content-section">
+          <div class="align-middle">
+            <h3 id="titleWithSvg">Trending</h3>
+            <svg id="svgWithTitle" width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Graph">
+                <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M0 0H1V15H16V16H0V0ZM10 3.5C10 3.36739 10.0527 3.24021 10.1464 3.14645C10.2402 3.05268 10.3674 3 10.5 3H14.5C14.6326 3 14.7598 3.05268 14.8536 3.14645C14.9473 3.24021 15 3.36739 15 3.5V7.5C15 7.63261 14.9473 7.75979 14.8536 7.85355C14.7598 7.94732 14.6326 8 14.5 8C14.3674 8 14.2402 7.94732 14.1464 7.85355C14.0527 7.75979 14 7.63261 14 7.5V4.9L10.387 9.317C10.3428 9.37099 10.2877 9.41511 10.2254 9.44655C10.1631 9.47798 10.0949 9.49602 10.0252 9.4995C9.9555 9.50299 9.88584 9.49184 9.8207 9.46678C9.75556 9.44172 9.69639 9.4033 9.647 9.354L7.06 6.767L3.404 11.794C3.32402 11.8957 3.20774 11.9624 3.07958 11.9802C2.95143 11.9979 2.82138 11.9653 2.71677 11.8892C2.61216 11.8131 2.54113 11.6994 2.51861 11.572C2.49609 11.4446 2.52383 11.3134 2.596 11.206L6.596 5.706C6.63846 5.64751 6.69309 5.59893 6.75613 5.56359C6.81917 5.52825 6.88912 5.50699 6.96117 5.50129C7.03322 5.49559 7.10564 5.50557 7.17346 5.53055C7.24128 5.55554 7.30287 5.59492 7.354 5.646L9.963 8.256L13.445 4H10.5C10.3674 4 10.2402 3.94732 10.1464 3.85355C10.0527 3.75979 10 3.63261 10 3.5Z" fill="#007BFF" />
+              </g>
+            </svg>
+          </div>
+          <ul class="list-group">
+
+            <!-- LINK #1 -->
+            <a href="#">
+              <li class="sidebar-list d-flex justify-content-between align-items-center">
+                Topic #1
+                <span class="badge badge-primary badge-pill">14</span>
+              </li>
+            </a>
+
+            <!-- LINK #2 -->
+            <a href="#">
+              <li class="sidebar-list d-flex justify-content-between align-items-center">
+                Topic #2
+                <span class="badge badge-primary badge-pill">2</span>
+              </li>
+            </a>
+
+            <!-- LINK #3 -->
+            <a href="#">
+              <li class="sidebar-list d-flex justify-content-between align-items-center">
+                Topic #3
+                <span class="badge badge-primary badge-pill">1</span>
+              </li>
+            </a>
+
+          </ul>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+
+<!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </html>

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+<!-- CONTENT START -->
+{% block content %}
+
+<!-- REGISTER -->
+<div class="content-section mb-2">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+
+            <!-- TITLE -->
+            <legend>
+                <h3>Login</h3>
+            </legend>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label font-weight-bold") }}
+
+                {% if form.email.errors %}
+                {{ form.email(class="form-control dark-form is-invalid") }}
+                {% else %}
+                {{ form.email(class="form-control dark-form") }}
+                {% endif %}
+
+                {% for error in form.email.errors %}
+                <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label font-weight-bold") }}
+
+                {% if form.password.errors %}
+                {{ form.password(class="form-control dark-form is-invalid") }}
+                {% else %}
+                {{ form.password(class="form-control dark-form") }}
+                {% endif %}
+
+                {% for error in form.password.errors %}
+                <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+
+            </div>
+
+            <!-- REMEMBER ME -->
+            <div class="form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+
+        </fieldset>
+
+        <!-- FORGOT PASSWORD -->
+        <small class="float-right">
+            <a href="#">Forgot your password?</a>
+        </small>
+
+        <!-- SUBMIT -->
+        <div class="form-group mb-1">
+            {{form.submit(class="btn btn-primary button") }}
+        </div>
+
+    </form>
+</div>
+
+<!-- FOOTER -->
+<div class="mb-3">
+    <small>Don't have an account yet? <a class="ml-1" href="{{ url_for('register') }}">Sign up now.</a></small>
+</div>
+
+<!-- CONTENT END -->
+{% endblock content %}
