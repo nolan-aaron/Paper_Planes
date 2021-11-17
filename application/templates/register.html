@@ -9,11 +9,6 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
-            <!-- TITLE -->
-            <legend>
-                <h3>Create Account</h3>
-            </legend>
-
             <!-- USERNAME -->
             <div class="form-group">
                 {{ form.username.label(class="form-control-label font-weight-bold") }}
@@ -23,9 +18,9 @@
                     </div>
 
                     {% if form.username.errors %}
-                    {{ form.username(class="form-control dark-form is-invalid") }}
+                    {{ form.username(class="form-control dark-form is-invalid input-form") }}
                     {% else %}
-                    {{ form.username(class="form-control dark-form") }}
+                    {{ form.username(class="form-control dark-form input-form") }}
                     {% endif %}
                 </div>
                 {% for error in form.username.errors %}
@@ -38,9 +33,9 @@
                 {{ form.email.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.email.errors %}
-                {{ form.email(class="form-control dark-form is-invalid") }}
+                {{ form.email(class="form-control dark-form is-invalid input-form") }}
                 {% else %}
-                {{ form.email(class="form-control dark-form") }}
+                {{ form.email(class="form-control dark-form input-form") }}
                 {% endif %}
 
                 {% for error in form.email.errors %}
@@ -54,9 +49,9 @@
                 {{ form.password.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.password.errors %}
-                {{ form.password(class="form-control dark-form is-invalid") }}
+                {{ form.password(class="form-control dark-form is-invalid input-form") }}
                 {% else %}
-                {{ form.password(class="form-control dark-form") }}
+                {{ form.password(class="form-control dark-form input-form") }}
                 {% endif %}
 
                 {% for error in form.password.errors %}
@@ -70,9 +65,9 @@
                 {{ form.confirm_password.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class="form-control dark-form is-invalid") }}
+                {{ form.confirm_password(class="form-control dark-form is-invalid input-form") }}
                 {% else %}
-                {{ form.confirm_password(class="form-control dark-form") }}
+                {{ form.confirm_password(class="form-control dark-form input-form") }}
                 {% endif %}
 
                 {% for error in form.confirm_password.errors %}
@@ -85,14 +80,14 @@
 
         <!-- SUBMIT -->
         <div class="form-group mb-1">
-            {{form.submit(class="btn btn-primary button") }}
+            {{form.submit(class="btn button input-button") }}
         </div>
     </form>
 </div>
 
 <!-- FOOTER -->
 <div class="mb-3">
-    <small>Already have an account? <a class="ml-1" href="{{ url_for('login') }}">Sign in here.</a></small>
+    <small>Already have an account? <a class="ml-1" href="{{ url_for('authentication.login') }}">Sign in.</a></small>
 </div>
 
 <!-- CONTENT END -->

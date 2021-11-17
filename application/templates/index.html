@@ -5,13 +5,13 @@
 
 <!-- POSTS -->
 {% for post in posts %}
-<article class="media content-section">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#" id="user">{{ post.username }}</a>
+<article class="content-section">
+    <div>
+        <div class="post-metadata">
+            <a class="mr-2 post-username font-weight-bold" href="#">{{ post.username }}</a>
             <small>{{ post.posted }}</small>
         </div>
-        <p class="article-content">{{ post.content }}</p>
+        <p class="post-content">{{ post.content }}</p>
     </div>
 </article>
 {% endfor %}

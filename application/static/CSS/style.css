@@ -1,0 +1,137 @@
+:root {
+  --primary: #007bff;
+  --background: #121212;
+  --component: #1a1a1a;
+  --surface: #222222;
+  --high-emphasis: rgb(255, 255, 255, 0.87);
+  --medium-emphasis: rgb(255, 255, 255, 0.60);
+  --disable: rgb(255, 255, 255, 0.38);
+  --outer-radius: 8px;
+  --inner-radius: 5px;
+  --hover-opacity: 0.85;
+}
+
+body {
+  background: var(--background);
+}
+
+.container-main {
+  margin-top: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--high-emphasis);
+}
+
+small {
+  color: var(--medium-emphasis);
+}
+
+.nav-dark {
+  background-color: var(--background);
+}
+
+.content-section {
+  background: var(--component);
+  padding: 10px 15px;
+  border-radius: var(--outer-radius);
+  margin-bottom: 15px;
+}
+
+.post-content {
+  white-space: pre-line;
+}
+
+.post-metadata {
+  margin-bottom: 4px;
+}
+
+.sidebar-list {
+  padding: 8px 10px;
+  margin: 5px;
+  border-radius: var(--inner-radius);
+  list-style-type: none;
+  color: var(--high-emphasis);
+  background-color: var(--surface);
+}
+
+.input-form {
+  border-radius: var(--inner-radius);
+}
+
+.input-button {
+  border-radius: var(--inner-radius);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--high-emphasis);
+}
+
+.input-button:hover {
+  opacity: var(--hover-opacity);
+  color: var(--high-emphasis);
+}
+
+a:hover {
+  text-decoration: none;
+  opacity: var(--hover-opacity);
+}
+
+.post-username {
+  color: var(--primary);
+}
+
+.heading-title {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.heading-svg {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+#svg-graph {
+  fill: var(--primary);
+}
+
+.button:active {
+  transform: translateY(2px);
+}
+
+fieldset div {
+  color: var(--high-emphasis);
+}
+
+.dark-form, .dark-form:focus {
+  background-color: var(--surface);
+  border-color: var(--surface);
+  color: var(--high-emphasis);
+}
+
+.badge-fill {
+  background-color: var(--primary);
+}
+
+/* NOT CURRENTLY USED */
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}

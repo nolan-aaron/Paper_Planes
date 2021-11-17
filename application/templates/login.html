@@ -9,19 +9,14 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
-            <!-- TITLE -->
-            <legend>
-                <h3>Login</h3>
-            </legend>
-
             <!-- EMAIL -->
             <div class="form-group">
                 {{ form.email.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.email.errors %}
-                {{ form.email(class="form-control dark-form is-invalid") }}
+                {{ form.email(class="form-control dark-form is-invalid input-form") }}
                 {% else %}
-                {{ form.email(class="form-control dark-form") }}
+                {{ form.email(class="form-control dark-form input-form") }}
                 {% endif %}
 
                 {% for error in form.email.errors %}
@@ -35,9 +30,9 @@
                 {{ form.password.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.password.errors %}
-                {{ form.password(class="form-control dark-form is-invalid") }}
+                {{ form.password(class="form-control dark-form is-invalid input-form") }}
                 {% else %}
-                {{ form.password(class="form-control dark-form") }}
+                {{ form.password(class="form-control dark-form input-form") }}
                 {% endif %}
 
                 {% for error in form.password.errors %}
@@ -61,7 +56,7 @@
 
         <!-- SUBMIT -->
         <div class="form-group mb-1">
-            {{form.submit(class="btn btn-primary button") }}
+            {{form.submit(class="btn button input-button") }}
         </div>
 
     </form>
@@ -69,7 +64,7 @@
 
 <!-- FOOTER -->
 <div class="mb-3">
-    <small>Don't have an account yet? <a class="ml-1" href="{{ url_for('register') }}">Sign up now.</a></small>
+    <small>Don't have an account? <a class="ml-1" href="{{ url_for('authentication.register') }}">Sign up.</a></small>
 </div>
 
 <!-- CONTENT END -->
