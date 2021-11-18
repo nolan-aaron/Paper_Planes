@@ -1,8 +1,18 @@
 from application import db
 from datetime import datetime
+from flask_login import UserMixin
+
+# CREATE NEW DATABASE
+
+# from application import db, create_app
+# app=create_app()
+# ctx=app.app_context()
+# ctx.push()
+# db.create_all()
+# quit()
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)

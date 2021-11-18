@@ -1,7 +1,4 @@
-from flask import render_template, flash, redirect, url_for, Blueprint
-from application import create_app
-from application.forms import RegistrationForm, LoginForm
-from application.models import User, Post
+from flask import Blueprint, render_template
 
 blueprint = Blueprint('routes', __name__)
 

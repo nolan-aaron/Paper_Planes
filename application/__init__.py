@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 
@@ -14,6 +15,19 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     db.init_app(app)
 
+    # Configure the login manager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'authentication.login'
+    login_manager.login_message = 'You need to be signed in before you can do that!'
+    login_manager.login_message_category = 'info'
+
+    from application.models import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     # Import routes module to avoid circular references
     from application import routes
     app.register_blueprint(routes.blueprint)
@@ -21,5 +35,9 @@ def create_app():
     # Import authentication module to avoid circular references
     from application import authentication
     app.register_blueprint(authentication.blueprint)
+
+    # Import account module to avoid circular references
+    from application import profile
+    app.register_blueprint(profile.blueprint)
 
     return app
