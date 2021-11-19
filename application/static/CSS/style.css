@@ -8,7 +8,7 @@
   --disable: rgb(255, 255, 255, 0.38);
   --outer-radius: 8px;
   --inner-radius: 5px;
-  --hover-opacity: 0.85;
+  --hover-opacity: 0.90;
 }
 
 body {
@@ -19,11 +19,15 @@ body {
   margin-top: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, legend {
   color: var(--high-emphasis);
 }
 
 small {
+  color: var(--medium-emphasis);
+}
+
+.medium-emphasis {
   color: var(--medium-emphasis);
 }
 
@@ -112,6 +116,18 @@ fieldset div {
   background-color: var(--primary);
 }
 
+/* PROFILE */
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
 /* NOT CURRENTLY USED */
 .article-img {
   height: 65px;
@@ -123,15 +139,4 @@ fieldset div {
   width: 25px;
   height: 25px;
   vertical-align: middle;
-}
-
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-.account-heading {
-  font-size: 2.5rem;
 }

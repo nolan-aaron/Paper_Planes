@@ -3,8 +3,79 @@
 <!-- CONTENT START -->
 {% block content %}
 
-<!-- PROFILE -->
-<h1>@{{ current_user.username }}</h1>
+<div class="content-section">
+
+    <!-- PROFILE HEADER -->
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ image_file }}">
+        <div>
+            <h2 class="account-heading">@{{ current_user.username }}</h2>
+            <p class="medium-emphasis">{{ current_user.email }}</p>
+        </div>
+    </div>
+
+    <!-- EDIT PROFILE -->
+    <div class="content-section mb-2">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+
+                <legend class="mb-3">Edit Profile</legend>
+
+                <!-- USERNAME -->
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label font-weight-bold") }}
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text dark-form">@</div>
+                        </div>
+
+                        {% if form.username.errors %}
+                        {{ form.username(class="form-control dark-form is-invalid input-form") }}
+                        {% else %}
+                        {{ form.username(class="form-control dark-form input-form") }}
+                        {% endif %}
+                    </div>
+                    {% for error in form.username.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label font-weight-bold") }}
+
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control dark-form is-invalid input-form") }}
+                    {% else %}
+                    {{ form.email(class="form-control dark-form input-form") }}
+                    {% endif %}
+
+                    {% for error in form.email.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                    {% endfor %}
+
+                </div>
+
+                <!-- PROFILE PICTURE -->
+                <div class="form-group">
+                    {{ form.picture.label(class="font-weight-bold") }}
+                    {{ form.picture(class="form-control-file medium-emphasis") }}
+                    {% for error in form.picture.errors %}
+                    <small class="text-danger">{{ error }}</small><br>
+                    {% endfor %}
+                </div>
+
+            </fieldset>
+
+            <!-- SUBMIT -->
+            <div class="form-group mb-1">
+                {{form.submit(class="btn button input-button") }}
+            </div>
+        </form>
+    </div>
+
+</div>
 
 <!-- CONTENT END -->
 {% endblock content %}
