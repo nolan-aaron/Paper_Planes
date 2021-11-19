@@ -31,6 +31,10 @@ small {
   color: var(--medium-emphasis);
 }
 
+.high-emphasis {
+  color: var(--high-emphasis);
+}
+
 .nav-dark {
   background-color: var(--background);
 }
@@ -128,10 +132,10 @@ fieldset div {
   font-size: 2.5rem;
 }
 
-/* NOT CURRENTLY USED */
+/* POSTS */
 .article-img {
-  height: 65px;
-  width: 65px;
+  height: 60px;
+  width: 60px;
   margin-right: 16px;
 }
 
@@ -139,4 +143,13 @@ fieldset div {
   width: 25px;
   height: 25px;
   vertical-align: middle;
+}
+
+.modal-background {
+  background: var(--component);
+  border-radius: var(--outer-radius);
+}
+
+.inner-radius {
+  border-radius: var(--inner-radius);
 }

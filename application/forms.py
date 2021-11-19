@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.fields.simple import TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import User
 
@@ -74,3 +75,9 @@ class UpdateProfileForm(FlaskForm):
             if email_taken:
                 raise ValidationError(
                     'An account already exists using this email. Please choose a different one.')
+
+
+class PostForm(FlaskForm):
+
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Post')

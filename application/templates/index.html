@@ -5,14 +5,23 @@
 
 <!-- POSTS -->
 {% for post in posts %}
-<article class="content-section">
-    <div>
-        <div class="post-metadata">
-            <a class="mr-2 post-username font-weight-bold" href="#">{{ post.username }}</a>
-            <small>{{ post.posted }}</small>
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+
+    <div class="w-100">
+        <span class="mr-2 post-username font-weight-bold">@{{ post.author.username }}</span>
+        <small>{{ elapsed_time(post) }}</small>
+
+        {% if post.author == current_user %}
+        <p class="post-content mb-0 mt-1">{{ post.content }}</p>
+        <div class="float-right">
+            <small class="mb-0"><a href="{{ url_for('post.edit_post', post_id=post.id) }}" class="medium-emphasis">Edit</a></small>
         </div>
-        <p class="post-content">{{ post.content }}</p>
+        {% else %}
+        <p class="post-content mt-1">{{ post.content }}</p>
+        {% endif %}
     </div>
+
 </article>
 {% endfor %}
 

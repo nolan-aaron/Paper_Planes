@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+<!-- CONTENT START -->
+{% block content %}
+
+<!-- POST -->
+<div class="content-section mb-2 pt-3">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+
+            <!-- CONTENT -->
+            <div class="form-group mb-0">
+
+                {% if form.content.errors %}
+                {{ form.content(class="form-control dark-form is-invalid input-form", rows="5", style="resize: none;") }}
+                {% else %}
+                {{ form.content(class="form-control dark-form input-form mb", rows="5", style="resize: none;") }}
+                {% endif %}
+
+                {% for error in form.content.errors %}
+                <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+
+            </div>
+
+        </fieldset>
+
+        <!-- SUBMIT -->
+        <div class="form-group mb-1">
+            {{form.submit(class="btn button input-button") }}
+        </div>
+
+    </form>
+</div>
+
+<!-- CONTENT END -->
+{% endblock content %}

@@ -19,7 +19,7 @@ def create_app():
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'authentication.login'
-    login_manager.login_message = 'You need to be signed in before you can do that!'
+    login_manager.login_message = 'You need to sign in before you can do that!'
     login_manager.login_message_category = 'info'
 
     from application.models import User
@@ -39,5 +39,9 @@ def create_app():
     # Import account module to avoid circular references
     from application import profile
     app.register_blueprint(profile.blueprint)
+
+    # Import post module to avoid circular references
+    from application import post
+    app.register_blueprint(post.blueprint)
 
     return app
