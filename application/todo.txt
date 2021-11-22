@@ -1,0 +1,6 @@
+- Add option to Delete account in the Profile section
+- Show character limit on new posts
+- Hyperlink usernames to display a page with all of the users posts
+- Add a hasthtag feature for new posts and to display what's trending
+- Add search functionality by hashtag
+- Handle 403 Forbidden errors

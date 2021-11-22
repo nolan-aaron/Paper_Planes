@@ -8,7 +8,7 @@ blueprint = Blueprint('routes', __name__)
 @blueprint.route("/")
 def index():
 
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.date_posted.desc()).all()
 
     return render_template('index.html', posts=posts, elapsed_time=elapsed_time)
 

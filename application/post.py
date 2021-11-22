@@ -4,13 +4,14 @@ from flask_login import login_required, current_user
 from application.forms import PostForm
 from application.models import Post
 from application import db
+from application.routes import elapsed_time
 
 blueprint = Blueprint('post', __name__, url_prefix='/post')
 
 
-@blueprint.route("/create", methods=['GET', 'POST'])
+@blueprint.route("/new", methods=['GET', 'POST'])
 @login_required
-def create_post():
+def new_post():
 
     form = PostForm()
     if form.validate_on_submit():
@@ -24,7 +25,7 @@ def create_post():
         flash("Your post has been created!", 'success')
         return redirect(url_for('routes.index'))
 
-    return render_template('create_post.html', title='Create Post', form=form)
+    return render_template('create_post.html', title='New Post', form=form)
 
 
 @blueprint.route("/<int:post_id>/edit", methods=['GET', 'POST'])
@@ -42,6 +43,7 @@ def edit_post(post_id):
     if form.validate_on_submit():
 
         post.content = form.content.data
+        post.edited = True
         db.session.commit()
         flash("Your post has been updated!", 'success')
 
@@ -51,7 +53,7 @@ def edit_post(post_id):
 
         form.content.data = post.content
 
-    return render_template('edit_post.html', title='Edit Post', form=form, post=post)
+    return render_template('edit_post.html', title='Edit Post', form=form, post=post, elapsed_time=elapsed_time)
 
 
 @blueprint.route("/<int:post_id>/delete", methods=['POST'])

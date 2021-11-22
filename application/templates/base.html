@@ -13,13 +13,18 @@
   <link rel="stylesheet" href="/static/CSS/style.css" />
 
   <!-- ICON -->
-  <link rel="icon" href="/static/img/icon.png">
+  <link rel="icon" href="/static/img/icon.svg">
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- TITLE -->
   {% if title %}
-  <title>Twitter - {{title}}</title>
+  <title>Paper Planes - {{title}}</title>
   {% else %}
-  <title>Twitter</title>
+  <title>Paper Planes</title>
   {% endif %}
   </title>
 </head>
@@ -30,7 +35,7 @@
 
     <!-- TITLE -->
     <div class="container">
-      <a class="navbar-brand mr-4 font-weight-bold" href="{{ url_for('routes.index') }}">Twitter</a>
+      <a class="navbar-brand mr-4 font-weight-bold" href="{{ url_for('routes.index') }}">Paper Planes</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,12 +49,12 @@
         <!-- RIGHT SIDE -->
         <div class="navbar-nav">
           {% if current_user.is_authenticated %}
-          <a class="nav-item nav-link" href="{{ url_for('post.create_post') }}">New Post</a>
-          <a class="nav-item nav-link" href="{{ url_for('profile.profile') }}">Profile</a>
-          <a class="nav-item nav-link" href="{{ url_for('authentication.logout') }}">Sign out</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('post.new_post') }}" style="color: var(--high-emphasis);">New Post</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('profile.profile') }}" style="color: var(--high-emphasis);">Profile</a>
+          <a class="nav-item nav-link pr-0 pb-0 pt-0" href="{{ url_for('authentication.logout') }}"><button class="btn button input-button">Sign out</button></a>
           {% else %}
-          <a class="nav-item nav-link" href="{{ url_for('authentication.login') }}">Sign in</a>
-          <a class="nav-item nav-link" href="{{ url_for('authentication.register') }}">Sign up</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('authentication.register') }}" style="color: var(--high-emphasis);">Sign up</a>
+          <a class="nav-item nav-link pr-0 pb-0 pt-0" href="{{ url_for('authentication.login') }}"><button class="btn button input-button">Sign in</button></a>
           {% endif %}
         </div>
       </div>
@@ -100,7 +105,7 @@
             <!-- LINK #1 -->
             <a href="#">
               <li class="sidebar-list d-flex justify-content-between align-items-center">
-                Topic #1
+                #hashtag 1
                 <span class="badge badge-pill badge-fill">14</span>
               </li>
             </a>
@@ -108,7 +113,7 @@
             <!-- LINK #2 -->
             <a href="#">
               <li class="sidebar-list d-flex justify-content-between align-items-center">
-                Topic #2
+                #hashtag 2
                 <span class="badge badge-pill badge-fill">2</span>
               </li>
             </a>
@@ -116,7 +121,7 @@
             <!-- LINK #3 -->
             <a href="#">
               <li class="sidebar-list d-flex justify-content-between align-items-center">
-                Topic #3
+                #hashtag 3
                 <span class="badge badge-pill badge-fill">1</span>
               </li>
             </a>

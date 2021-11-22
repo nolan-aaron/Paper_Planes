@@ -1,8 +1,9 @@
 :root {
-  --primary: #007bff;
-  --background: #121212;
-  --component: #1a1a1a;
-  --surface: #222222;
+  --primary: #3f3fff;
+  --seconday: #ffff3f;
+  --background: #17171f;
+  --component: #1b1b27;
+  --surface: #1f1f2e;
   --high-emphasis: rgb(255, 255, 255, 0.87);
   --medium-emphasis: rgb(255, 255, 255, 0.60);
   --disable: rgb(255, 255, 255, 0.38);
@@ -11,20 +12,42 @@
   --hover-opacity: 0.90;
 }
 
+/* Change Autocomplete styles in Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid var(--surface);
+  -webkit-text-fill-color: var(--medium-emphasis);
+  -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: var(--medium-emphasis);
+}
+
 body {
   background: var(--background);
+  font-family: 'Poppins', sans-serif;
 }
 
 .container-main {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
-h1, h2, h3, h4, h5, h6, p, legend {
+h1, h2, h3, h4, h5, h6 {
   color: var(--high-emphasis);
 }
 
-small {
+p, legend {
   color: var(--medium-emphasis);
+}
+
+small {
+  color: var(--disable);
 }
 
 .medium-emphasis {
@@ -113,7 +136,7 @@ fieldset div {
 .dark-form, .dark-form:focus {
   background-color: var(--surface);
   border-color: var(--surface);
-  color: var(--high-emphasis);
+  color: var(--medium-emphasis);
 }
 
 .badge-fill {
@@ -152,4 +175,23 @@ fieldset div {
 
 .inner-radius {
   border-radius: var(--inner-radius);
+}
+
+#svg-edit:hover {
+  color: var(--primary);
+}
+
+.primary-colour {
+  color: var(--primary);
+}
+
+/* SMALL LINKS --> Sign in, Sign up, Forgot your password? */
+.primary-colour:hover {
+  color: var(--primary);
+  text-decoration: none;
+  opacity: var(--hover-opacity);
+}
+
+.primary-text:hover {
+  color: var(--primary);
 }

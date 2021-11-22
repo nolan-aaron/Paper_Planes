@@ -4,11 +4,12 @@ from flask_login import UserMixin
 
 # CREATE NEW DATABASE
 
+# python3
 # from application import db, create_app
 # app=create_app()
 # ctx=app.app_context()
 # ctx.push()
-# db.create_all()
+# db.create_all() or db.drop_all()
 # quit()
 
 
@@ -33,6 +34,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow)
+    edited = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):

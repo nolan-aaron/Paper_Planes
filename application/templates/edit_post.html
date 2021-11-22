@@ -9,7 +9,14 @@
 
     <div class="w-100">
         <span class="mr-2 post-username font-weight-bold">@{{ post.author.username }}</span>
-        <small>{{ post.date_posted.strftime('%d %b, %Y') }}</small>
+        <small class="font-weight-light">{{ elapsed_time(post) }}</small>
+
+        <!-- EDITED -->
+        {% if post.edited %}
+        <div class="float-right">
+            <small class="mt-1 font-weight-light">Edited</small>
+        </div>
+        {% endif %}
 
         <form method="POST">
             {{ form.hidden_tag() }}
@@ -34,8 +41,11 @@
 
             <!-- UPDATE/DELETE -->
             <div class="form-group mb-1">
+                <a href="{{ url_for('routes.index') }}">
+                    <button type="button" class="btn btn-secondary btn-sm inner-radius">Back</button>
+                </a>
                 <button type="button" class="btn btn-danger btn-sm ml-2 float-right inner-radius" data-toggle="modal" data-target="#deleteModal">Delete</button>
-                {{form.submit(class="btn button input-button btn-sm float-right", value="Save changes") }}
+                {{form.submit(class="btn button input-button btn-sm float-right", value="Update") }}
             </div>
         </form>
 
