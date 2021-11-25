@@ -1,6 +1,13 @@
 - Add option to Delete account in the Profile section
-- Show character limit on new posts
 - Hyperlink usernames to display a page with all of the users posts
-- Add a hasthtag feature for new posts and to display what's trending
+- Add a hashtag feature for new posts and to display what's trending
 - Add search functionality by hashtag
 - Handle 403 Forbidden errors
+- Lazy loading or pagination
+- Improve accessibility (name tags, alt text etc.)
+- Make grey disabled text links turn high-emphasis on hover (make links consistent)
+- Refactor CSS and make utilty classes rather than specifically named classes for one element
+- Show which page the user is on by underlining navbar
+- Add sort/filter option on index (newest, most likes etc.)
+- Validate usernames to only have numbers and/or letters
+- Add support for week/weeks/year/years on post age

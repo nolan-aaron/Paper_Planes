@@ -1,6 +1,6 @@
 :root {
   --primary: #3f3fff;
-  --seconday: #ffff3f;
+  --secondary: #ffff3f;
   --background: #17171f;
   --component: #1b1b27;
   --surface: #1f1f2e;
@@ -29,13 +29,16 @@ select:-webkit-autofill:focus {
   caret-color: var(--medium-emphasis);
 }
 
-body {
-  background: var(--background);
+#nav-heading {
   font-family: 'Poppins', sans-serif;
 }
 
+body {
+  background: var(--background);
+}
+
 .container-main {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,6 +48,12 @@ h1, h2, h3, h4, h5, h6 {
 p, legend {
   color: var(--medium-emphasis);
 }
+
+.white-fill {
+  fill: white;
+}
+
+
 
 small {
   color: var(--disable);
@@ -64,13 +73,15 @@ small {
 
 .content-section {
   background: var(--component);
-  padding: 10px 15px;
+  padding: 10px 13px;
   border-radius: var(--outer-radius);
-  margin-bottom: 15px;
+  margin-bottom: 17px;
 }
 
 .post-content {
   white-space: pre-line;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .post-metadata {
@@ -82,7 +93,7 @@ small {
   margin: 5px;
   border-radius: var(--inner-radius);
   list-style-type: none;
-  color: var(--high-emphasis);
+  color: var(--medium-emphasis);
   background-color: var(--surface);
 }
 
@@ -145,9 +156,9 @@ fieldset div {
 
 /* PROFILE */
 .account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
+  height: 115px;
+  width: 115px;
+  margin-right: 13px;
   margin-bottom: 16px;
 }
 
@@ -157,9 +168,9 @@ fieldset div {
 
 /* POSTS */
 .article-img {
-  height: 60px;
-  width: 60px;
-  margin-right: 16px;
+  height: 40px;
+  width: 40px;
+  margin-right: 4px;
 }
 
 .article-svg {
@@ -177,12 +188,16 @@ fieldset div {
   border-radius: var(--inner-radius);
 }
 
-#svg-edit:hover {
-  color: var(--primary);
+#svg-edit {
+  fill: var(--disable);
 }
 
 .primary-colour {
   color: var(--primary);
+}
+
+.secondary-colour {
+  color: var(--secondary);
 }
 
 /* SMALL LINKS --> Sign in, Sign up, Forgot your password? */
@@ -194,4 +209,45 @@ fieldset div {
 
 .primary-text:hover {
   color: var(--primary);
+}
+
+/* Large size */
+@media only screen and (max-width: 767px) {
+
+  /* PROFILE IMAGE */
+  .account-img {
+    height: 90px;
+    width: 90px;
+  }
+
+}
+
+/* Medium size */
+@media only screen and (max-width: 500px) {
+
+  /* PROFILE IMAGE */
+  .account-img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .profile-text {
+    font-size: 25px;
+  }
+
+}
+
+/* Small size */
+@media only screen and (max-width: 374px) {
+
+  /* PROFILE IMAGE */
+  .account-img {
+    height: 45px;
+    width: 45px;
+  }
+
+  .profile-text {
+    font-size: 20px;
+  }
+
 }

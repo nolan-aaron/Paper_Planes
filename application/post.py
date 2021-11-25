@@ -1,12 +1,15 @@
 from flask import Blueprint, render_template, flash, redirect, abort, request
 from flask.helpers import url_for
 from flask_login import login_required, current_user
+from wtforms.validators import Length
 from application.forms import PostForm
 from application.models import Post
 from application import db
 from application.routes import elapsed_time
 
 blueprint = Blueprint('post', __name__, url_prefix='/post')
+
+CHAR_LIMIT = 300
 
 
 @blueprint.route("/new", methods=['GET', 'POST'])
@@ -34,6 +37,8 @@ def edit_post(post_id):
 
     post = Post.query.get_or_404(post_id)
 
+    chars_remaining = CHAR_LIMIT - len(post.content)
+
     # Abort if current user isn't the author
     if post.author != current_user:
         abort(403)
@@ -53,7 +58,7 @@ def edit_post(post_id):
 
         form.content.data = post.content
 
-    return render_template('edit_post.html', title='Edit Post', form=form, post=post, elapsed_time=elapsed_time)
+    return render_template('edit_post.html', title='Edit Post', form=form, post=post, elapsed_time=elapsed_time, chars_remaining=chars_remaining)
 
 
 @blueprint.route("/<int:post_id>/delete", methods=['POST'])

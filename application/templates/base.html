@@ -20,6 +20,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- CHARACTER COUNT -->
+  <script>
+    function countChar(val, max) {
+      var len = val.value.length;
+
+      if (len >= max) {
+        $('#charNum').text('0 characters remaining');
+      }
+      else if (len == max - 1) {
+        $('#charNum').text('1 character remaining');
+      }
+      else {
+        $('#charNum').text(max - len + ' characters remaining');
+      }
+    };
+  </script>
+
   <!-- TITLE -->
   {% if title %}
   <title>Paper Planes - {{title}}</title>
@@ -35,7 +52,12 @@
 
     <!-- TITLE -->
     <div class="container">
-      <a class="navbar-brand mr-4 font-weight-bold" href="{{ url_for('routes.index') }}">Paper Planes</a>
+      <a class="navbar-brand mr-4 font-weight-bold" href="{{ url_for('routes.index') }}" id="nav-heading">
+        Paper Planes
+        <svg width="19" height="19" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg" class="ml-2">
+          <path class="white-fill" fill-rule="evenodd" clip-rule="evenodd" d="M5.98657 0.257174C6.00021 0.2231 6.00355 0.185773 5.99618 0.14982C5.9888 0.113867 5.97104 0.080869 5.94508 0.0549169C5.91913 0.0289648 5.88614 0.0111999 5.85018 0.00382471C5.81423 -0.00355049 5.7769 -0.00021172 5.74283 0.0134271L0.287896 2.19552L0.118027 2.26302C0.0859245 2.27583 0.0579862 2.29726 0.0372982 2.32495C0.0166103 2.35263 0.00397777 2.3855 0.00079618 2.41992C-0.00238541 2.45433 0.00400771 2.48896 0.0192694 2.51997C0.034531 2.55098 0.0580672 2.57717 0.0872781 2.59564L0.241023 2.69314L0.241398 2.69389L2.11446 3.88563L3.30617 5.75873L3.30692 5.75948L3.40441 5.91323C3.42295 5.94233 3.44915 5.96575 3.48014 5.98091C3.51112 5.99608 3.54569 6.0024 3.58004 5.99918C3.61439 5.99596 3.64719 5.98333 3.67482 5.96268C3.70245 5.94202 3.72385 5.91414 3.73665 5.8821L5.98657 0.257174ZM5.29922 0.965915L5.47584 0.524171L5.03411 0.700793L2.22395 3.51101L2.3507 3.59163C2.37396 3.6064 2.39368 3.62612 2.40845 3.64938L2.48907 3.77613L5.29922 0.965915Z" fill="white" fill-opacity="0.85" />
+        </svg>
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,17 +65,17 @@
       <!-- LEFT SIDE -->
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-          <!-- Menu items can be added here -->
+          <a class="nav-item nav-link" href="{{ url_for('routes.index') }}" style="color: var(--medium-emphasis);">Home</a>
         </div>
 
         <!-- RIGHT SIDE -->
         <div class="navbar-nav">
           {% if current_user.is_authenticated %}
-          <a class="nav-item nav-link my-auto" href="{{ url_for('post.new_post') }}" style="color: var(--high-emphasis);">New Post</a>
-          <a class="nav-item nav-link my-auto" href="{{ url_for('profile.profile') }}" style="color: var(--high-emphasis);">Profile</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('post.new_post') }}" style="color: var(--medium-emphasis);">New Post</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('profile.profile') }}" style="color: var(--medium-emphasis);">Profile</a>
           <a class="nav-item nav-link pr-0 pb-0 pt-0" href="{{ url_for('authentication.logout') }}"><button class="btn button input-button">Sign out</button></a>
           {% else %}
-          <a class="nav-item nav-link my-auto" href="{{ url_for('authentication.register') }}" style="color: var(--high-emphasis);">Sign up</a>
+          <a class="nav-item nav-link my-auto" href="{{ url_for('authentication.register') }}" style="color: var(--medium-emphasis);">Sign up</a>
           <a class="nav-item nav-link pr-0 pb-0 pt-0" href="{{ url_for('authentication.login') }}"><button class="btn button input-button">Sign in</button></a>
           {% endif %}
         </div>

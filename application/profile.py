@@ -62,4 +62,6 @@ def profile():
     image_file = url_for(
         'static', filename=f'profile_pics/{current_user.image_file}')
 
-    return render_template('profile.html', title='Profile', image_file=image_file, form=form)
+    date_joined = current_user.date_joined.strftime('%d %b, %Y')
+
+    return render_template('profile.html', title='Profile', image_file=image_file, form=form, date_joined=date_joined)

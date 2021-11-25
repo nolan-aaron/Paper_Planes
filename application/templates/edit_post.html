@@ -5,30 +5,36 @@
 
 <!-- POST -->
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
 
     <div class="w-100">
-        <span class="mr-2 post-username font-weight-bold">@{{ post.author.username }}</span>
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+        <span class="mr-1 primary-colour font-weight-bold">@{{ post.author.username }}</span>
+
         <small class="font-weight-light">{{ elapsed_time(post) }}</small>
 
         <!-- EDITED -->
         {% if post.edited %}
-        <div class="float-right">
-            <small class="mt-1 font-weight-light">Edited</small>
-        </div>
+        <small class="font-weight-light">• Edited</small>
         {% endif %}
+
 
         <form method="POST">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
 
                 <!-- CONTENT -->
-                <div class="form-group mb-0 mt-1">
+                <div class="form-group mb-0 mt-2">
 
                     {% if form.content.errors %}
-                    {{ form.content(class="form-control dark-form is-invalid input-form", rows="5", style="resize: none;") }}
+                    {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300") }}
                     {% else %}
-                    {{ form.content(class="form-control dark-form input-form mb", rows="5", style="resize: none;") }}
+                    {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300") }}
+                    {% endif %}
+
+                    {% if chars_remaining == 1 %}
+                    <small class="float-right mt-1" id="charNum">{{chars_remaining}} character remaining</small>
+                    {% else %}
+                    <small class="float-right mt-1" id="charNum">{{chars_remaining}} characters remaining</small>
                     {% endif %}
 
                     {% for error in form.content.errors %}

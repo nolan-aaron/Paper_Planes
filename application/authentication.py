@@ -52,7 +52,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             flash(
-                f"You're signed in as @{user.username}!", 'success')
+                f"You signed in as @{user.username}!", 'success')
             return redirect(next_page) if next_page else redirect(url_for('routes.index'))
 
         else:

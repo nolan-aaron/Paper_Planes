@@ -5,42 +5,47 @@
 
 <!-- POST -->
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
 
-    <div class="w-100">
-        <span class="mr-2 post-username font-weight-bold">@{{ current_user.username }}</span>
+    </head>
 
-        <form method="POST">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
+    <body>
 
-                <!-- CONTENT -->
-                <div class="form-group mb-0 mt-1">
+        <div class="w-100">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
+            <span class="mr-1 primary-colour font-weight-bold">@{{ current_user.username }}</span>
 
-                    {% if form.content.errors %}
-                    {{ form.content(class="form-control dark-form is-invalid input-form", rows="5", style="resize: none;", placeholder="Got something to say?") }}
-                    {% else %}
-                    {{ form.content(class="form-control dark-form input-form mb", rows="5", style="resize: none;", placeholder="Got something to say?") }}
-                    {% endif %}
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
 
-                    {% for error in form.content.errors %}
-                    <small class="text-danger">{{ error }}</small>
-                    {% endfor %}
+                    <!-- CONTENT -->
+                    <div class="form-group mb-0 mt-2">
 
+                        {% if form.content.errors %}
+                        {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300") }}
+                        {% else %}
+                        {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300") }}
+                        {% endif %}
+
+                        <small class="float-right mt-1" id="charNum">300 characters remaining</small>
+
+
+                        {% for error in form.content.errors %}
+                        <small class="text-danger">{{ error }}</small>
+                        {% endfor %}
+
+                    </div>
+
+                </fieldset>
+
+                <!-- SUBMIT -->
+                <div class="form-group mb-1">
+                    {{form.submit(class="btn button input-button") }}
                 </div>
 
-            </fieldset>
-
-            <!-- SUBMIT -->
-            <div class="form-group mb-1">
-                {{form.submit(class="btn button input-button") }}
-            </div>
-
-        </form>
-    </div>
+            </form>
+        </div>
 </article>
 
 <!-- CONTENT END -->
 {% endblock content %}
-
-<script src="/characterCount.js"></script>
