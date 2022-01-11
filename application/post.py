@@ -28,7 +28,7 @@ def new_post():
         flash("Your post has been created!", 'success')
         return redirect(url_for('routes.index'))
 
-    return render_template('create_post.html', title='New Post', form=form)
+    return render_template('create_post.html', title='Create Post', form=form)
 
 
 @blueprint.route("/<int:post_id>/edit", methods=['GET', 'POST'])

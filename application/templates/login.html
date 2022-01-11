@@ -9,14 +9,16 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
+            <legend class="mb-3 high-emphasis font-weight-bold">Log in</legend>
+
             <!-- EMAIL -->
             <div class="form-group">
                 {{ form.email.label(class="form-control-label font-weight-bold") }}
 
                 {% if form.email.errors %}
-                {{ form.email(class="form-control dark-form is-invalid input-form") }}
+                {{ form.email(class="form-control dark-form is-invalid input-form", autofocus=true) }}
                 {% else %}
-                {{ form.email(class="form-control dark-form input-form") }}
+                {{ form.email(class="form-control dark-form input-form", autofocus=true) }}
                 {% endif %}
 
                 {% for error in form.email.errors %}

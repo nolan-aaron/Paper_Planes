@@ -3,24 +3,23 @@
 <!-- CONTENT START -->
 {% block content %}
 
-<div class="content-section">
+<div class="content-section mb-2">
 
     <!-- PROFILE HEADER -->
     <div class="media">
         <img class="rounded-circle account-img" src="{{ image_file }}">
         <div>
-            <h2 class="account-heading primary-colour profile-text font-weight-bold">@{{ current_user.username }}</h2>
+            <h2 class="account-heading secondary-colour profile-text font-weight-bold">@{{ current_user.username }}</h2>
             <p class="medium-emphasis">Joined: {{ date_joined }}</p>
         </div>
     </div>
 
     <!-- EDIT PROFILE -->
-    <div class="content-section mb-2">
+    <div class="content-section mb-0 pb-0">
         <form method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
-            <fieldset class="form-group">
+            <fieldset class="form-group mb-1">
 
-                <legend class="mb-3 high-emphasis">Edit Profile</legend>
 
                 <!-- USERNAME -->
                 <div class="form-group">
@@ -66,15 +65,42 @@
                     {% endfor %}
                 </div>
 
-            </fieldset>
+                <!-- SUBMIT -->
+                <div class="form-group">
+                    {{form.submit(class="btn button input-button float-right") }}
+                </div>
 
-            <!-- SUBMIT -->
-            <div class="form-group mb-1">
-                {{form.submit(class="btn button input-button") }}
-            </div>
+            </fieldset>
         </form>
     </div>
+</div>
 
+<!-- FOOTER -->
+<div class="mb-3">
+    <small class="disable">Looking for a way out? <a class="ml-1 primary-colour" data-toggle="modal" data-target="#deleteModal" href="#">Delete account.</a></small>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modal-background">
+            <div class="modal-header" style="border: none;">
+                <h5 class="modal-title high-emphasis font-weight-bold" id="deleteModalLabel">Delete Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="high-emphasis" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pb-0 pt-0">
+                <p class="mb-0 high-emphasis">Are you sure you want to permanently delete your account? This action can't be undone and will also remove any posts that you've made.</p>
+            </div>
+            <div class="modal-footer" style="border: none">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <form method="POST" action="{{ url_for('profile.delete_account') }}">
+                    <input class="btn btn-danger btn-sm" type="submit" value="Yes, delete my account">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- CONTENT END -->

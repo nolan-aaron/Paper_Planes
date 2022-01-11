@@ -53,8 +53,6 @@ p, legend {
   fill: white;
 }
 
-
-
 small {
   color: var(--disable);
 }
@@ -173,6 +171,18 @@ fieldset div {
   margin-right: 4px;
 }
 
+.profile-icon {
+  height: 32px;
+  width: 32px;
+  margin-left: 4px;
+}
+
+.mobile-icon {
+  height: 32px;
+  width: 32px;
+  margin-left: 0px;
+}
+
 .article-svg {
   width: 25px;
   height: 25px;
@@ -209,6 +219,12 @@ fieldset div {
 
 .primary-text:hover {
   color: var(--primary);
+}
+
+/* All screens that are at least medium size */
+@media all and (min-width: 768px) {
+  .navbar .nav-item .dropdown-menu{ display: none; }
+  .navbar .nav-item:hover .dropdown-menu{ display: block; }
 }
 
 /* Large size */
@@ -250,4 +266,50 @@ fieldset div {
     font-size: 20px;
   }
 
+}
+
+/* Dropdown menu on navbar */
+.dropdown-menu {
+  background-color: var(--background);
+  border: 1px solid var(--medium-emphasis);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* All items in dropdown menu */
+.dropdown-item {
+  color: var(--medium-emphasis);
+  border-radius: 0px;
+}
+
+/* Override: First item in dropdown menu */
+.dropdown-item:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* Override: Last item in dropdown menu */
+.dropdown-item:last-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  color: var(--high-emphasis);
+  background-color: var(--primary);
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0px;
+}
+
+.navbar-toggler:focus {
+  outline: none;
 }

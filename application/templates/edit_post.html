@@ -8,7 +8,7 @@
 
     <div class="w-100">
         <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
-        <span class="mr-1 primary-colour font-weight-bold">@{{ post.author.username }}</span>
+        <span class="mr-1 secondary-colour font-weight-bold">@{{ post.author.username }}</span>
 
         <small class="font-weight-light">{{ elapsed_time(post) }}</small>
 
@@ -26,9 +26,9 @@
                 <div class="form-group mb-0 mt-2">
 
                     {% if form.content.errors %}
-                    {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300") }}
+                    {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300", autofocus=true) }}
                     {% else %}
-                    {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300") }}
+                    {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", onkeyup="countChar(this, 300)", maxlength="300", autofocus=true, onfocus="var temp_value=this.value; this.value=''; this.value=temp_value") }}
                     {% endif %}
 
                     {% if chars_remaining == 1 %}
@@ -48,7 +48,7 @@
             <!-- UPDATE/DELETE -->
             <div class="form-group mb-1">
                 <a href="{{ url_for('routes.index') }}">
-                    <button type="button" class="btn btn-secondary btn-sm inner-radius">Back</button>
+                    <button type="button" class="btn btn-secondary btn-sm inner-radius">Go back</button>
                 </a>
                 <button type="button" class="btn btn-danger btn-sm ml-2 float-right inner-radius" data-toggle="modal" data-target="#deleteModal">Delete</button>
                 {{form.submit(class="btn button input-button btn-sm float-right", value="Update") }}

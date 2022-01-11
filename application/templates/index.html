@@ -11,7 +11,7 @@
 
         <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
 
-        <span class="mr-1 primary-colour font-weight-bold">@{{ post.author.username }}</span>
+        <span class="mr-1 secondary-colour font-weight-bold">@{{ post.author.username }}</span>
 
         <small class="font-weight-light">{{ elapsed_time(post) }}</small>
 

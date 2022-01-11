@@ -12,19 +12,19 @@
 
         <div class="w-100">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
-            <span class="mr-1 primary-colour font-weight-bold">@{{ current_user.username }}</span>
+            <span class="mr-1 secondary-colour font-weight-bold">@{{ current_user.username }}</span>
 
             <form method="POST">
                 {{ form.hidden_tag() }}
-                <fieldset class="form-group">
+                <fieldset class="form-group mb-0">
 
                     <!-- CONTENT -->
                     <div class="form-group mb-0 mt-2">
 
                         {% if form.content.errors %}
-                        {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300") }}
+                        {{ form.content(class="form-control dark-form is-invalid input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300", autofocus=true) }}
                         {% else %}
-                        {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300") }}
+                        {{ form.content(class="form-control dark-form input-form", rows="9", style="resize: none;", placeholder="Got something to say?", onkeyup="countChar(this, 300)", maxlength="300", autofocus=true) }}
                         {% endif %}
 
                         <small class="float-right mt-1" id="charNum">300 characters remaining</small>
@@ -40,7 +40,7 @@
 
                 <!-- SUBMIT -->
                 <div class="form-group mb-1">
-                    {{form.submit(class="btn button input-button") }}
+                    {{form.submit(class="btn button btn-sm input-button") }}
                 </div>
 
             </form>

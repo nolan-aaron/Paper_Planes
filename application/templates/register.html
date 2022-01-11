@@ -9,23 +9,32 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
+            <legend class="mb-3 high-emphasis font-weight-bold">Sign up</legend>
+
             <!-- USERNAME -->
             <div class="form-group">
+
                 {{ form.username.label(class="form-control-label font-weight-bold") }}
+
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text dark-form">@</div>
                     </div>
 
                     {% if form.username.errors %}
-                    {{ form.username(class="form-control dark-form is-invalid input-form") }}
+                    {{ form.username(class="form-control dark-form is-invalid input-form", autofocus=true, maxlength="8") }}
                     {% else %}
-                    {{ form.username(class="form-control dark-form input-form") }}
+                    {{ form.username(class="form-control dark-form input-form", autofocus=true, maxlength="8") }}
                     {% endif %}
+
                 </div>
+
+                <small class="text-disable">Your username must be between 2 and 8 characters.</small><br>
+
                 {% for error in form.username.errors %}
                 <small class="text-danger">{{ error }}</small>
                 {% endfor %}
+
             </div>
 
             <!-- EMAIL -->
@@ -53,6 +62,8 @@
                 {% else %}
                 {{ form.password(class="form-control dark-form input-form") }}
                 {% endif %}
+
+                <small class="text-disable">Your password must contain at least 8 characters.</small><br>
 
                 {% for error in form.password.errors %}
                 <small class="text-danger">{{ error }}</small>
@@ -87,7 +98,7 @@
 
 <!-- FOOTER -->
 <div class="mb-3">
-    <small class="disable">Already have an account? <a class="ml-1 primary-colour" href="{{ url_for('authentication.login') }}">Sign in.</a></small>
+    <small class="disable">Already have an account? <a class="ml-1 primary-colour" href="{{ url_for('authentication.login') }}">Log in.</a></small>
 </div>
 
 <!-- CONTENT END -->

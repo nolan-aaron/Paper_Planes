@@ -6,6 +6,7 @@ from flask.helpers import flash
 from flask_login import login_required, current_user
 from werkzeug.utils import redirect
 from application.forms import UpdateProfileForm
+from application.models import Post
 from application import db
 
 blueprint = Blueprint('profile', __name__, url_prefix='/profile')
@@ -52,7 +53,7 @@ def profile():
         db.session.commit()
         flash(f"Your profile has been updated!", 'success')
 
-        return redirect(url_for('profile.profile'))
+        return redirect(url_for('routes.index'))
 
     elif request.method == 'GET':
 
@@ -65,3 +66,21 @@ def profile():
     date_joined = current_user.date_joined.strftime('%d %b, %Y')
 
     return render_template('profile.html', title='Profile', image_file=image_file, form=form, date_joined=date_joined)
+
+
+@blueprint.route("/delete", methods=['GET', 'POST'])
+@login_required
+def delete_account():
+
+    # Delete all posts belonging to the user
+    user_posts = Post.query.filter_by(user_id=current_user.id)
+
+    for post in user_posts:
+        db.session.delete(post)
+
+    # Delete the user account
+    db.session.delete(current_user)
+    db.session.commit()
+    flash("Account successfully deleted. We're sorry to see you go!", 'success')
+
+    return redirect(url_for('routes.index'))

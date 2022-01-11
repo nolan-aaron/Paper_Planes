@@ -31,8 +31,9 @@ def register():
         login_user(user)
 
         flash(
-            f"Account created! You're signed in as @{current_user.username}!", 'success')
-        return redirect(url_for('routes.index'))
+            f"Woohoo, you're in! Upload a profile photo to finish setting up your account.", 'success')
+
+        return redirect(url_for('profile.profile'))
 
     return render_template('register.html', title='Sign up', form=form)
 
@@ -51,21 +52,17 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            flash(
-                f"You signed in as @{user.username}!", 'success')
             return redirect(next_page) if next_page else redirect(url_for('routes.index'))
 
         else:
             flash(
-                f"Login unsuccessful, please try again.", 'danger')
+                f"Log in unsuccessful, please try again.", 'danger')
 
-    return render_template('login.html', title='Sign in', form=form)
+    return render_template('login.html', title='Log in', form=form)
 
 
 @blueprint.route('/logout')
 @login_required
 def logout():
     logout_user()
-    flash(
-        f"You've been signed out.", 'success')
     return redirect(url_for('routes.index'))

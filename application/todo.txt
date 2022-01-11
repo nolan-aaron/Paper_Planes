@@ -1,4 +1,3 @@
-- Add option to Delete account in the Profile section
 - Hyperlink usernames to display a page with all of the users posts
 - Add a hashtag feature for new posts and to display what's trending
 - Add search functionality by hashtag
@@ -11,3 +10,10 @@
 - Add sort/filter option on index (newest, most likes etc.)
 - Validate usernames to only have numbers and/or letters
 - Add support for week/weeks/year/years on post age
+- Test forms on iPhone to see if correct keyboards appear for email, number etc. (may need to add type="email" etc.)
+- Add <br> to all error messages
+- Set timer for 'stay logged in' feature
+- Remove confirm password
+- Option to show password
+- Make registration fields narrower and add something else on the right column
+- Add verification when deleting account (current implementation is only temporary)
