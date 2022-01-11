@@ -1,7 +1,7 @@
 - Hyperlink usernames to display a page with all of the users posts
 - Add a hashtag feature for new posts and to display what's trending
 - Add search functionality by hashtag
-- Handle 403 Forbidden errors
+- Handle 403 Forbidden errors + 404 etc.
 - Lazy loading or pagination
 - Improve accessibility (name tags, alt text etc.)
 - Make grey disabled text links turn high-emphasis on hover (make links consistent)
