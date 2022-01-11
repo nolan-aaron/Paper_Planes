@@ -236,6 +236,12 @@ fieldset div {
     width: 90px;
   }
 
+  /* Dropdown menu */
+  .dropdown-item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
 }
 
 /* Medium size */

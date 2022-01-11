@@ -6,7 +6,6 @@
 - Improve accessibility (name tags, alt text etc.)
 - Make grey disabled text links turn high-emphasis on hover (make links consistent)
 - Refactor CSS and make utilty classes rather than specifically named classes for one element
-- Show which page the user is on by underlining navbar
 - Add sort/filter option on index (newest, most likes etc.)
 - Validate usernames to only have numbers and/or letters
 - Add support for week/weeks/year/years on post age
@@ -16,4 +15,9 @@
 - Remove confirm password
 - Option to show password
 - Make registration fields narrower and add something else on the right column
-- Add verification when deleting account (current implementation is only temporary)
+- Ask for password after user confirms they want to delete their account
+- Add method to recover a forgotten password
+
+FOR NEXT COMMIT (DONE):
+- Updated default profile photo
+- Made mobile dropdown menu items easier to click

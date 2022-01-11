@@ -94,7 +94,7 @@
                 <p class="mb-0 high-emphasis">Are you sure you want to permanently delete your account? This action can't be undone and will also remove any posts that you've made.</p>
             </div>
             <div class="modal-footer" style="border: none">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No, take me back</button>
                 <form method="POST" action="{{ url_for('profile.delete_account') }}">
                     <input class="btn btn-danger btn-sm" type="submit" value="Yes, delete my account">
                 </form>

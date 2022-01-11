@@ -31,7 +31,7 @@ def register():
         login_user(user)
 
         flash(
-            f"Woohoo, you're in! Upload a profile photo to finish setting up your account.", 'success')
+            f"You're in! Feel free to change your profile photo below, or keep the one we've given you.", 'success')
 
         return redirect(url_for('profile.profile'))
 
