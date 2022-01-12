@@ -5,8 +5,10 @@
 
 <!-- REGISTER -->
 <div class="content-section mb-2">
+
     <form method="POST">
         {{ form.hidden_tag() }}
+
         <fieldset class="form-group">
 
             <!-- USERNAME -->
@@ -16,7 +18,7 @@
 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text dark-form">@</div>
+                        <div class="input-group-text dark-form font-weight-bold">@</div>
                     </div>
 
                     {% if form.username.errors %}
@@ -142,7 +144,7 @@
 {% block sidebar %}
 
 <div class="col-md-5 d-none d-md-block">
-    <img src="/static/img/register.svg" alt="Sign up image" class="img-fluid mx-auto d-block">
+    <img src="/static/img/register.svg" alt="Sign up image" class="img-fluid pl-4">
 </div>
 
 <!-- SIDEBAR END -->
