@@ -9,8 +9,6 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
 
-            <legend class="mb-3 high-emphasis font-weight-bold">Sign up</legend>
-
             <!-- USERNAME -->
             <div class="form-group">
 
@@ -22,9 +20,9 @@
                     </div>
 
                     {% if form.username.errors %}
-                    {{ form.username(class="form-control dark-form is-invalid input-form", autofocus=true, maxlength="8") }}
+                    {{ form.username(class="form-control dark-form is-invalid input-form icon-field", autofocus=true, maxlength="8") }}
                     {% else %}
-                    {{ form.username(class="form-control dark-form input-form", autofocus=true, maxlength="8") }}
+                    {{ form.username(class="form-control dark-form input-form icon-field", autofocus=true, maxlength="8") }}
                     {% endif %}
 
                 </div>
@@ -39,13 +37,25 @@
 
             <!-- EMAIL -->
             <div class="form-group">
+
                 {{ form.email.label(class="form-control-label font-weight-bold") }}
 
-                {% if form.email.errors %}
-                {{ form.email(class="form-control dark-form is-invalid input-form") }}
-                {% else %}
-                {{ form.email(class="form-control dark-form input-form") }}
-                {% endif %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text dark-form">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control dark-form is-invalid input-form icon-field") }}
+                    {% else %}
+                    {{ form.email(class="form-control dark-form input-form icon-field") }}
+                    {% endif %}
+
+                </div>
 
                 {% for error in form.email.errors %}
                 <small class="text-danger">{{ error }}</small>
@@ -55,13 +65,25 @@
 
             <!-- PASSWORD -->
             <div class="form-group">
+
                 {{ form.password.label(class="form-control-label font-weight-bold") }}
 
-                {% if form.password.errors %}
-                {{ form.password(class="form-control dark-form is-invalid input-form") }}
-                {% else %}
-                {{ form.password(class="form-control dark-form input-form") }}
-                {% endif %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text dark-form">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {% if form.password.errors %}
+                    {{ form.password(class="form-control dark-form is-invalid input-form icon-field") }}
+                    {% else %}
+                    {{ form.password(class="form-control dark-form input-form icon-field") }}
+                    {% endif %}
+
+                </div>
 
                 <small class="text-disable">Your password must contain at least 8 characters.</small><br>
 
@@ -73,13 +95,25 @@
 
             <!-- CONFIRM PASSWORD -->
             <div class="form-group mb-0">
+
                 {{ form.confirm_password.label(class="form-control-label font-weight-bold") }}
 
-                {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class="form-control dark-form is-invalid input-form") }}
-                {% else %}
-                {{ form.confirm_password(class="form-control dark-form input-form") }}
-                {% endif %}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text dark-form">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control dark-form is-invalid input-form icon-field") }}
+                    {% else %}
+                    {{ form.confirm_password(class="form-control dark-form input-form icon-field") }}
+                    {% endif %}
+
+                </div>
 
                 {% for error in form.confirm_password.errors %}
                 <small class="text-danger">{{ error }}</small>
@@ -103,3 +137,13 @@
 
 <!-- CONTENT END -->
 {% endblock content %}
+
+<!-- SIDEBAR START -->
+{% block sidebar %}
+
+<div class="col-lg-4">
+    <img src="/static/img/register_image.svg" alt="Sign up image" class="img-fluid">
+</div>
+
+<!-- SIDEBAR END -->
+{% endblock sidebar %}

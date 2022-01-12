@@ -17,7 +17,19 @@
 - Make registration fields narrower and add something else on the right column
 - Ask for password after user confirms they want to delete their account
 - Add method to recover a forgotten password
+- Add 'My posts' section to navbar
+- Option to specify country on sign up?
 
-FOR NEXT COMMIT (DONE):
-- Updated default profile photo
-- Made mobile dropdown menu items easier to click
+NEXT COMMIT ~~>
+
+Sidebar Improvements:
+    - Created sidebar block to allow for dynamic content on each page
+    - Made custom sidebars/graphics for log in and sign up
+    - Adjusted placeholder graphics and text for 'Trending'
+
+Navbar:
+    - Added home button to navbar
+
+Forms:
+    - Added icons to input field page to increase usability
+    - Removed legend keys for log in and sign up

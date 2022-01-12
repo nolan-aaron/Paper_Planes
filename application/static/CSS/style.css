@@ -121,7 +121,7 @@ a:hover {
 }
 
 .heading-title {
-  margin-right: 10px;
+  margin-right: 5px;
   display: inline-block;
 }
 
@@ -318,4 +318,20 @@ fieldset div {
 
 .navbar-toggler:focus {
   outline: none;
+}
+
+/* Icon next to field inputs */
+.icon-field {
+  padding-left: 0.375rem;
+}
+
+/* Field next to icons */
+.input-group-text {
+  padding-right: 0.375rem;
+}
+
+/* 'Stay logged in' checkbox */
+.form-check-label {
+  font-size: 0.85rem;
+  color: var(--high-emphasis);
 }

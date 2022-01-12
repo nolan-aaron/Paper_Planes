@@ -23,32 +23,49 @@
 
                 <!-- USERNAME -->
                 <div class="form-group">
+
                     {{ form.username.label(class="form-control-label font-weight-bold") }}
+
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text dark-form">@</div>
                         </div>
 
                         {% if form.username.errors %}
-                        {{ form.username(class="form-control dark-form is-invalid input-form") }}
+                        {{ form.username(class="form-control dark-form is-invalid input-form icon-field") }}
                         {% else %}
-                        {{ form.username(class="form-control dark-form input-form") }}
+                        {{ form.username(class="form-control dark-form input-form icon-field") }}
                         {% endif %}
+
                     </div>
+
                     {% for error in form.username.errors %}
                     <small class="text-danger">{{ error }}</small>
                     {% endfor %}
+
                 </div>
 
                 <!-- EMAIL -->
                 <div class="form-group">
+
                     {{ form.email.label(class="form-control-label font-weight-bold") }}
 
-                    {% if form.email.errors %}
-                    {{ form.email(class="form-control dark-form is-invalid input-form") }}
-                    {% else %}
-                    {{ form.email(class="form-control dark-form input-form") }}
-                    {% endif %}
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text dark-form">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control dark-form is-invalid input-form icon-field") }}
+                        {% else %}
+                        {{ form.email(class="form-control dark-form input-form icon-field") }}
+                        {% endif %}
+
+                    </div>
 
                     {% for error in form.email.errors %}
                     <small class="text-danger">{{ error }}</small>
@@ -105,3 +122,45 @@
 
 <!-- CONTENT END -->
 {% endblock content %}
+
+<!-- SIDEBAR START -->
+{% block sidebar %}
+
+<div class="col-lg-4">
+    <div class="content-section">
+        <div class="align-middle mt-1">
+            <h5 class="heading-title">Tip and tricks!</h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3f3fff" class="bi bi-lightbulb mb-2" viewBox="0 0 16 16">
+                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+            </svg>
+        </div>
+        <ul class="list-group">
+
+            <!-- LINK #1 -->
+            <a href="#">
+                <li class="sidebar-list d-flex justify-content-between align-items-center">
+                    Quisque sit amet quam et massa pulvinar elementum.
+                </li>
+            </a>
+
+            <!-- LINK #2 -->
+            <a href="#">
+                <li class="sidebar-list d-flex justify-content-between align-items-center">
+                    Mauris et turpis ornare, eleifend sem ac, auctor sem.
+                </li>
+            </a>
+
+            <!-- LINK #3 -->
+            <a href="#">
+                <li class="sidebar-list d-flex justify-content-between align-items-center">
+                    Vivamus ut mauris nec tortor semper fringilla scelerisque a diam.
+                </li>
+            </a>
+
+        </ul>
+        </p>
+    </div>
+</div>
+
+<!-- SIDEBAR END -->
+{% endblock sidebar %}
