@@ -357,16 +357,6 @@ fieldset div {
 /* TODO */
 @media (prefers-color-scheme: light) {
 
-  :root {
-    --primary: #e2baeb;
-    --secondary: #74eb9c;
-    --background: #ffffff;
-    --component: #ffffff;
-    --surface: #ffffff;
-    --soft-primary: #b0f7c8;
-    --high-emphasis: #000;
-    --medium-emphasis: #000;
-    --disable: #000;
-  }
+  /* :root */
 
 }

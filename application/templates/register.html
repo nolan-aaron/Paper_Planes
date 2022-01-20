@@ -52,9 +52,9 @@
                     </div>
 
                     {% if form.email.errors %}
-                    {{ form.email(class="form-control dark-form is-invalid input-form icon-field") }}
+                    {{ form.email(class="form-control dark-form is-invalid input-form icon-field", type="email") }}
                     {% else %}
-                    {{ form.email(class="form-control dark-form input-form icon-field") }}
+                    {{ form.email(class="form-control dark-form input-form icon-field", type="email") }}
                     {% endif %}
 
                 </div>

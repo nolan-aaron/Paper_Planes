@@ -24,9 +24,9 @@
                     </div>
 
                     {% if form.email.errors %}
-                    {{ form.email(class="form-control dark-form is-invalid input-form icon-field", autofocus=true) }}
+                    {{ form.email(class="form-control dark-form is-invalid input-form icon-field", autofocus=true, type="email") }}
                     {% else %}
-                    {{ form.email(class="form-control dark-form input-form icon-field", autofocus=true) }}
+                    {{ form.email(class="form-control dark-form input-form icon-field", autofocus=true, type="email") }}
                     {% endif %}
 
                 </div>

@@ -14,7 +14,6 @@
 - Set timer for 'stay logged in' feature
 - Remove confirm password
 - Option to show password
-- Make registration fields narrower and add something else on the right column
 - Ask for password after user confirms they want to delete their account
 - Add method to recover a forgotten password
 - Add 'My posts' section to navbar
