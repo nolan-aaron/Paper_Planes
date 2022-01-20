@@ -13,12 +13,6 @@
   --hover-opacity: 0.90;
 }
 
-/* TODO */
-@media (prefers-color-scheme: light) {
-
-}
-
-
 /* Change Autocomplete styles in Chrome */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -358,4 +352,21 @@ fieldset div {
 /* Input field colour when focused */
 .form-control:focus {
   box-shadow: 0 0 0 .15rem var(--primary);
+}
+
+/* TODO */
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --primary: #e2baeb;
+    --secondary: #74eb9c;
+    --background: #ffffff;
+    --component: #ffffff;
+    --surface: #ffffff;
+    --soft-primary: #b0f7c8;
+    --high-emphasis: #000;
+    --medium-emphasis: #000;
+    --disable: #000;
+  }
+
 }
