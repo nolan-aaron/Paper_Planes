@@ -93,8 +93,8 @@
 
           <!-- SMALL DISPLAYS ONLY -->
           <div>
-            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('profile.profile') }}">View profile</a>
             <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('post.new_post') }}">Create post</a>
+            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('profile.profile') }}">View profile</a>
             <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('authentication.logout') }}">Sign out</a>
           </div>
           {% endif %}
@@ -111,8 +111,8 @@
               <img class="rounded-circle profile-icon" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('profile.profile') }}">View profile</a>
               <a class="dropdown-item" href="{{ url_for('post.new_post') }}">Create post</a>
+              <a class="dropdown-item" href="{{ url_for('profile.profile') }}">View profile</a>
               <a class="dropdown-item" href="{{ url_for('authentication.logout') }}">Sign out</a>
             </div>
           </li>

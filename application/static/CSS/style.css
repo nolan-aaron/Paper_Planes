@@ -213,7 +213,7 @@ fieldset div {
   fill: var(--disable);
 }
 
-#svg-edit:focus {
+#svg-edit:focus, #svg-edit:hover {
   fill: var(--primary);
 }
 
