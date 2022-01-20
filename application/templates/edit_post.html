@@ -47,9 +47,7 @@
 
             <!-- UPDATE/DELETE -->
             <div class="form-group mb-1">
-                <a href="{{ url_for('routes.index') }}">
-                    <button type="button" class="btn btn-secondary btn-sm inner-radius">Go back</button>
-                </a>
+                <button type="button" class="btn btn-secondary btn-sm inner-radius" onclick="history.back(-1)">Go back</button>
                 <button type="button" class="btn btn-danger btn-sm ml-2 float-right inner-radius" data-toggle="modal" data-target="#deleteModal">Delete</button>
                 {{form.submit(class="btn button input-button btn-sm float-right", value="Update") }}
             </div>

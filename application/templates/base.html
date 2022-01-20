@@ -88,20 +88,13 @@
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
 
-          <!-- LARGER DISPLAYS ONLY -->
-          <a class="nav-item nav-link my-auto d-none d-md-block" href="{{ url_for('routes.index') }}" style="color: var(--medium-emphasis);">Home</a>
-
           <!-- IF AUTHENTICATED -->
           {% if current_user.is_authenticated %}
 
-          <!-- LARGER DISPLAYS ONLY -->
-          <a class="nav-item nav-link my-auto d-none d-md-block" href="{{ url_for('post.new_post') }}" style="color: var(--medium-emphasis);">Create post</a>
-
           <!-- SMALL DISPLAYS ONLY -->
           <div>
-            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('routes.index') }}">Home</a>
-            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('post.new_post') }}">Create post</a>
             <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('profile.profile') }}">View profile</a>
+            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('post.new_post') }}">Create post</a>
             <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('authentication.logout') }}">Sign out</a>
           </div>
           {% endif %}
@@ -119,6 +112,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('profile.profile') }}">View profile</a>
+              <a class="dropdown-item" href="{{ url_for('post.new_post') }}">Create post</a>
               <a class="dropdown-item" href="{{ url_for('authentication.logout') }}">Sign out</a>
             </div>
           </li>
@@ -132,7 +126,6 @@
 
           <!-- SMALL SCREENS -->
           <div>
-            <a class="dropdown-item d-md-none text-right pr-2" href="{{ url_for('routes.index') }}">Home</a>
             <a class="dropdown-item my-auto d-md-none text-right pr-2" href="{{ url_for('authentication.login') }}">Log in</a>
             <a class="dropdown-item my-auto d-md-none text-right pr-2" href="{{ url_for('authentication.register') }}">Sign up</a>
           </div>

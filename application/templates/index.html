@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- POSTS -->
-{% for post in posts %}
+{% for post in posts.items %}
 <article class="media content-section">
 
     <div class="w-100">
@@ -37,6 +37,38 @@
     </div>
 
 </article>
+{% endfor %}
+
+<!-- PAGINATION -->
+
+<!-- PREVIOUS -->
+{% for page_num in posts.iter_pages(left_edge=0, right_edge=0, left_current=1, right_current=2) %}
+{% if page_num %}
+{% if posts.page > page_num %}
+<a class="soft-primary-colour float-left mb-3" href="{{ url_for('routes.index', page=page_num) }}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--soft-primary)" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+    </svg>
+    <small class="soft-primary-colour">Previous page</small>
+</a>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+<!-- NEXT -->
+{% for page_num in posts.iter_pages(left_edge=0, right_edge=0, left_current=1, right_current=2) %}
+{% if page_num and page_num > posts.page %}
+{% if page_num > posts.page %}
+<a class="soft-primary-colour float-right mb-3" href="{{ url_for('routes.index', page=page_num) }}">
+    <small class="soft-primary-colour">Next page</small>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--soft-primary)" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+    </svg>
+</a>
+{% endif %}
+{% endif %}
 {% endfor %}
 
 <!-- CONTENT END -->

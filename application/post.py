@@ -51,7 +51,6 @@ def edit_post(post_id):
         post.edited = True
         db.session.commit()
         flash("Your post has been updated!", 'success')
-
         return redirect(url_for('routes.index'))
 
     elif request.method == 'GET':

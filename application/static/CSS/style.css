@@ -4,6 +4,7 @@
   --background: #17171f;
   --component: #1b1b27;
   --surface: #1f1f2e;
+  --soft-primary: #7171ff;
   --high-emphasis: rgb(255, 255, 255, 0.87);
   --medium-emphasis: rgb(255, 255, 255, 0.60);
   --disable: rgb(255, 255, 255, 0.38);
@@ -11,6 +12,12 @@
   --inner-radius: 5px;
   --hover-opacity: 0.90;
 }
+
+/* TODO */
+@media (prefers-color-scheme: light) {
+
+}
+
 
 /* Change Autocomplete styles in Chrome */
 input:-webkit-autofill,
@@ -54,6 +61,10 @@ p, legend {
 }
 
 small {
+  color: var(--disable);
+}
+
+.low-emphasis {
   color: var(--disable);
 }
 
@@ -202,8 +213,16 @@ fieldset div {
   fill: var(--disable);
 }
 
+#svg-edit:focus {
+  fill: var(--primary);
+}
+
 .primary-colour {
   color: var(--primary);
+}
+
+.soft-primary-colour {
+  color: var(--soft-primary);
 }
 
 .secondary-colour {
@@ -334,4 +353,9 @@ fieldset div {
 .form-check-label {
   font-size: 0.85rem;
   color: var(--high-emphasis);
+}
+
+/* Input field colour when focused */
+.form-control:focus {
+  box-shadow: 0 0 0 .15rem var(--primary);
 }
