@@ -81,4 +81,4 @@ class PostForm(FlaskForm):
 
     content = TextAreaField('Content', validators=[
                             DataRequired(), Length(max=300)])
-    submit = SubmitField('Create post')
+    submit = SubmitField('Send it!')

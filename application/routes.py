@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from application.models import Post
+from application.models import Post, User
 from datetime import datetime
 
 blueprint = Blueprint('routes', __name__)
@@ -7,11 +7,26 @@ blueprint = Blueprint('routes', __name__)
 
 @blueprint.route("/")
 def index():
+
+    # Pagination
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(
         Post.date_posted.desc()).paginate(page=page, per_page=5)
 
-    return render_template('index.html', posts=posts, elapsed_time=elapsed_time)
+    return render_template('index.html', posts=posts, elapsed_time=elapsed_time, total_users=total_users, total_posts=total_posts, latest_user=latest_user)
+
+
+# Below three functions should be moved to models.py
+def total_users():
+    return User.query.count()
+
+
+def total_posts():
+    return Post.query.count()
+
+
+def latest_user():
+    return User.query.order_by(User.date_joined.desc()).first().username
 
 
 def elapsed_time(post):

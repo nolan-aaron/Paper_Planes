@@ -20,6 +20,3 @@
 - Add 'My posts' section to navbar
 - Option to specify country on sign up?
 - Credit unDraw in HTML for images
-
-
-ADD ICON NEXT TO MENU ITEMS (+, PROFILE, DOOR CLOSE for Sign Out)
