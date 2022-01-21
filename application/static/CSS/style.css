@@ -121,8 +121,9 @@ a:hover {
   opacity: var(--hover-opacity);
 }
 
-.post-username {
-  color: var(--primary);
+/* Username above posts */
+.post-username:hover {
+  color: var(--secondary);
 }
 
 .heading-title {

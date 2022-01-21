@@ -2,14 +2,12 @@
 - Add a hashtag feature for new posts and to display what's trending
 - Add search functionality by hashtag
 - Handle 403 Forbidden errors + 404 etc.
-- Lazy loading or pagination
 - Improve accessibility (name tags, alt text etc.)
 - Make grey disabled text links turn high-emphasis on hover (make links consistent)
 - Refactor CSS and make utilty classes rather than specifically named classes for one element
 - Add sort/filter option on index (newest, most likes etc.)
 - Validate usernames to only have numbers and/or letters
 - Add support for week/weeks/year/years on post age
-- Test forms on iPhone to see if correct keyboards appear for email, number etc. (may need to add type="email" etc.)
 - Add <br> to all error messages
 - Set timer for 'stay logged in' feature
 - Remove confirm password
@@ -19,3 +17,5 @@
 - Add 'My posts' section to navbar
 - Option to specify country on sign up?
 - Credit unDraw in HTML for images
+- Tidy HTML + CSS
+- If user has no posts, have pop-up to suggest they make one (provide link)
