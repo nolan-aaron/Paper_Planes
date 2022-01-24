@@ -10,7 +10,7 @@ from datetime import datetime
 import time
 import pytz
 from ipstack import GeoLookup
-import socket
+import os
 from requests import get
 
 blueprint = Blueprint('authentication', __name__)
@@ -118,10 +118,8 @@ def reset_request():
     geo_lookup = GeoLookup(ACCESS_KEY)
 
     # GET USER IP ADDRESS
-    # hostname = socket.gethostname()
-    # ip_address = socket.gethostbyname(hostname)
-    ip_address = get('https://api.ipify.org').text
-    print(ip_address)
+    ip_address = request.environ.get('REMOTE_ADDR')
+    # ip_address = get('https://api.ipify.org').text
 
     # GET CITY/REGION DATA BASED ON IP ADDRESS
     location = geo_lookup.get_location(ip_address)
