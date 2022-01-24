@@ -73,7 +73,7 @@ def logout():
     return redirect(url_for('routes.index'))
 
 
-def send_reset_email(user, user_agent, user_time):
+def send_reset_email(user, user_agent, formatted_datetime):
     token = user.get_reset_token()
     msg = Message('Password Reset',
                   sender='paper-planes.herokuapp@outlook.com',
@@ -84,7 +84,7 @@ def send_reset_email(user, user_agent, user_time):
 
 <a href="{url_for('authentication.reset_token', token=token, _external=True)}"><button style="background-color: #3f3fff; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold">Reset your password</button></a>
 
-<p>This request was made on {user_time} from a {user_agent.platform} device using {user_agent.browser} and will be valid for 24 hours.</p>
+<p>This request was made on {formatted_datetime} from a {user_agent.platform} device using {user_agent.browser} and will be valid for 24 hours.</p>
 
 <p>If you did not request a new password, you can safely ignore this email or <a href="mailto:paper-planes.herokuapp@outlook.com">contact us</a> for support.</p>
 
@@ -100,10 +100,11 @@ def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for('routes.index'))
 
-    # Get user browser/platform/time details for email
+    # Get user browser/platform/datetime details for email
     user_agent = request.user_agent
-    user_local_time = datetime.now()
-    user_formatted_time = user_local_time.strftime('%b %d at %-I:%M %p')
+    tz_Aus = pytz.timezone('Australia/Brisbane')
+    datetime_Aus = datetime.now(tz_Aus)
+    formatted_datetime = datetime_Aus.strftime('%b %d at %-I:%M %p (AEST)')
 
     form = RequestResetForm()
     if form.validate_on_submit():
@@ -111,7 +112,7 @@ def reset_request():
 
         # Send password reset if an account exists for the provided email
         if user:
-            send_reset_email(user, user_agent, user_formatted_time)
+            send_reset_email(user, user_agent, formatted_datetime)
 
         # Simulate delay of sending an email to prevent enumeration attacks
         else:
