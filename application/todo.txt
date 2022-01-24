@@ -19,3 +19,4 @@
 - Credit unDraw in HTML for images
 - Tidy HTML + CSS
 - If user has no posts, have pop-up to suggest they make one (provide link)
+- Use ToLower for email addresses when registering/requesting password resets

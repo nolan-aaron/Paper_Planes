@@ -11,6 +11,7 @@ import time
 import pytz
 from ipstack import GeoLookup
 import socket
+from requests import get
 
 blueprint = Blueprint('authentication', __name__)
 
@@ -88,9 +89,7 @@ def send_reset_email(user, user_agent, formatted_datetime, user_location):
 
 <small>Note: this link is only valid for 24 hours.</small>
 
-<p>For your own security, this password request originated from:</p>
-
-<p><b>Device:</b> {user_agent.platform} ({user_agent.browser} browser)<br>
+<p><b>Device:</b> {user_agent.platform} ({user_agent.browser})<br>
 <b>Location:</b> {user_location}<br>
 <b>Date:</b> {formatted_datetime}</p>
 
@@ -119,8 +118,10 @@ def reset_request():
     geo_lookup = GeoLookup(ACCESS_KEY)
 
     # GET USER IP ADDRESS
-    hostname = socket.gethostname()
-    ip_address = socket.gethostbyname(hostname)
+    # hostname = socket.gethostname()
+    # ip_address = socket.gethostbyname(hostname)
+    ip_address = get('https://api.ipify.org').text
+    print(ip_address)
 
     # GET CITY/REGION DATA BASED ON IP ADDRESS
     location = geo_lookup.get_location(ip_address)
