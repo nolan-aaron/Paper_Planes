@@ -77,22 +77,18 @@ def logout():
     return redirect(url_for('routes.index'))
 
 
-def send_reset_email(user, user_agent, formatted_datetime, user_location):
+def send_reset_email(user, user_agent, formatted_datetime):
     token = user.get_reset_token()
     msg = Message('Password Reset',
                   sender='paper-planes.herokuapp@outlook.com',
                   recipients=[user.email])
     msg.html = f'''<p>Hi @{user.username},</p>
 
-<p>We received a request to reset the password for your Paper Planes account. You can click the button below to reset it.</p>
+<p>We received a request to reset the password for your Paper Planes account from a {user_agent.platform} ({user_agent.browser}) device on {formatted_datetime}. You can click the button below to reset it.</p>
 
 <a href="{url_for('authentication.reset_token', token=token, _external=True)}"><button style="background-color: #3f3fff; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold">Reset your password</button></a><br>
 
 <small>Note: this link is only valid for 24 hours.</small>
-
-<p><b>Device:</b> {user_agent.platform} ({user_agent.browser})<br>
-<b>Location:</b> {user_location}<br>
-<b>Date:</b> {formatted_datetime}</p>
 
 <p>If you did not request a new password, you can safely ignore this email or <a href="mailto:paper-planes.herokuapp@outlook.com">contact us</a> for support.</p>
 
@@ -114,26 +110,25 @@ def reset_request():
     datetime_Aus = datetime.now(tz_Aus)
     formatted_datetime = datetime_Aus.strftime('%B %d at %-I:%M %p')
 
+    # LOCATION DATA BELOW, MAYBE TRY AGAIN LATER
     # CONNECT TO IPSTACK API
-    ACCESS_KEY = '0ebf65cf0f5e120095e3d33dd7c859dc'
-    geo_lookup = GeoLookup(ACCESS_KEY)
+    # ACCESS_KEY = '0ebf65cf0f5e120095e3d33dd7c859dc'
+    # geo_lookup = GeoLookup(ACCESS_KEY)
 
-    # GET USER IP ADDRESS --> FIX THIS, NOT ABLE TO PULL CORRECT IP
+    # # GET USER IP ADDRESS --> FIX THIS, NOT ABLE TO PULL CORRECT IP
     # ip_address = get('https://api.ipify.org').text
-    hostname = socket.gethostname()
-    ip_address = socket.gethostbyname(hostname)
 
-    # GET CITY/REGION DATA BASED ON IP ADDRESS
-    location = geo_lookup.get_location(ip_address)
-    city = location['city']
-    region = location['region_name']
+    # # GET CITY/REGION DATA BASED ON IP ADDRESS
+    # location = geo_lookup.get_location(ip_address)
+    # city = location['city']
+    # region = location['region_name']
 
-    # IF NOT ABLE TO LOCATE CITY/REGION DATA
-    if city is None or region is None:
-        user_location = 'Not available'
+    # # IF NOT ABLE TO LOCATE CITY/REGION DATA
+    # if city is None or region is None:
+    #     user_location = 'Not available'
 
-    else:
-        user_location = f'{city}, {region}'
+    # else:
+    #     user_location = f'{city}, {region}'
 
     form = RequestResetForm()
 
@@ -142,8 +137,7 @@ def reset_request():
 
         # Send password reset if an account exists for the provided email
         if user:
-            send_reset_email(user, user_agent,
-                             formatted_datetime, user_location)
+            send_reset_email(user, user_agent, formatted_datetime)
 
         # Simulate delay of sending an email to prevent enumeration attacks
         else:
