@@ -9,6 +9,8 @@ from flask_mail import Mail
 from datetime import datetime
 import time
 import pytz
+from ipstack import GeoLookup
+import socket
 
 blueprint = Blueprint('authentication', __name__)
 
@@ -73,7 +75,7 @@ def logout():
     return redirect(url_for('routes.index'))
 
 
-def send_reset_email(user, user_agent, formatted_datetime):
+def send_reset_email(user, user_agent, formatted_datetime, user_location):
     token = user.get_reset_token()
     msg = Message('Password Reset',
                   sender='paper-planes.herokuapp@outlook.com',
@@ -82,9 +84,15 @@ def send_reset_email(user, user_agent, formatted_datetime):
 
 <p>We received a request to reset the password for your Paper Planes account. You can click the button below to reset it.</p>
 
-<a href="{url_for('authentication.reset_token', token=token, _external=True)}"><button style="background-color: #3f3fff; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold">Reset your password</button></a>
+<a href="{url_for('authentication.reset_token', token=token, _external=True)}"><button style="background-color: #3f3fff; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold">Reset your password</button></a><br>
 
-<p>This request was made on {formatted_datetime} from a {user_agent.platform} device using {user_agent.browser} and will be valid for 24 hours.</p>
+<small>Note: this link is only valid for 24 hours.</small>
+
+<p>For your own security, this password request originated from:</p>
+
+<p><b>Device:</b> {user_agent.platform} ({user_agent.browser} browser)<br>
+<b>Location:</b> {user_location}<br>
+<b>Date:</b> {formatted_datetime}</p>
 
 <p>If you did not request a new password, you can safely ignore this email or <a href="mailto:paper-planes.herokuapp@outlook.com">contact us</a> for support.</p>
 
@@ -100,19 +108,41 @@ def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for('routes.index'))
 
-    # Get user browser/platform/datetime details for email
+    # GET USER_AGENT (DEVICE/BROWSER)
     user_agent = request.user_agent
     tz_Aus = pytz.timezone('Australia/Brisbane')
     datetime_Aus = datetime.now(tz_Aus)
-    formatted_datetime = datetime_Aus.strftime('%b %d at %-I:%M %p (AEST)')
+    formatted_datetime = datetime_Aus.strftime('%B %d at %-I:%M %p')
+
+    # CONNECT TO IPSTACK API
+    ACCESS_KEY = '0ebf65cf0f5e120095e3d33dd7c859dc'
+    geo_lookup = GeoLookup(ACCESS_KEY)
+
+    # GET USER IP ADDRESS
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+
+    # GET CITY/REGION DATA BASED ON IP ADDRESS
+    location = geo_lookup.get_location(ip_address)
+    city = location['city']
+    region = location['region_name']
+
+    # IF NOT ABLE TO LOCATE CITY/REGION DATA
+    if city is None or region is None:
+        user_location = 'Not available'
+
+    else:
+        user_location = f'{city}, {region}'
 
     form = RequestResetForm()
+
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
         # Send password reset if an account exists for the provided email
         if user:
-            send_reset_email(user, user_agent, formatted_datetime)
+            send_reset_email(user, user_agent,
+                             formatted_datetime, user_location)
 
         # Simulate delay of sending an email to prevent enumeration attacks
         else:
