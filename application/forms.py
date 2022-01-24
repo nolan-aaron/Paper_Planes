@@ -1,3 +1,4 @@
+from flask import Flask
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
@@ -82,3 +83,19 @@ class PostForm(FlaskForm):
     content = TextAreaField('Content', validators=[
                             DataRequired(), Length(max=300)])
     submit = SubmitField('Send it!')
+
+
+class RequestResetForm(FlaskForm):
+
+    email = StringField('Enter your email to reset password',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Reset password')
+
+
+class ResetPasswordForm(FlaskForm):
+
+    password = PasswordField('New Password', validators=[
+                             DataRequired(), Length(min=8)])
+    confirm_password = PasswordField('Confirm New Password', validators=[
+                                     DataRequired(), EqualTo('password')])
+    submit = SubmitField('Set new password')

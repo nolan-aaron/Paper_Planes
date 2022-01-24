@@ -1,6 +1,8 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_mail import Mail
 
 db = SQLAlchemy()
 
@@ -14,6 +16,16 @@ def create_app():
     # SQLite database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
     db.init_app(app)
+
+    # Mail settings
+    app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    # os.environ.get('EMAIL_USER')
+    app.config['MAIL_USERNAME'] = 'paper-planes.herokuapp@outlook.com'
+    # os.environ.get('EMAIL_PASS')
+    app.config['MAIL_PASSWORD'] = 'Wd3Ltqt3wWxk8ReV'
+    mail = Mail(app)
 
     # Configure the login manager
     login_manager = LoginManager()

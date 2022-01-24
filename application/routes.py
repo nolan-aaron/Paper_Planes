@@ -80,4 +80,4 @@ def user_posts(username):
     posts = Post.query.filter_by(author=user).order_by(
         Post.date_posted.desc()).paginate(page=page, per_page=5)
 
-    return render_template('user_posts.html', posts=posts, user=user, elapsed_time=elapsed_time)
+    return render_template('user_posts.html', title=f'@{username}', posts=posts, user=user, elapsed_time=elapsed_time)

@@ -1,9 +1,14 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
-from application.forms import RegistrationForm, LoginForm
-from application import db
+from application.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm
+from application import db, create_app
 from application.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_mail import Message
+from flask_mail import Mail
+from datetime import datetime
+import time
+import pytz
 
 blueprint = Blueprint('authentication', __name__)
 
@@ -66,3 +71,84 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('routes.index'))
+
+
+def send_reset_email(user, user_agent, user_time):
+    token = user.get_reset_token()
+    msg = Message('Password Reset',
+                  sender='paper-planes.herokuapp@outlook.com',
+                  recipients=[user.email])
+    msg.html = f'''<p>Hi @{user.username},</p>
+
+<p>We received a request to reset the password for your Paper Planes account. You can click the button below to reset it.</p>
+
+<a href="{url_for('authentication.reset_token', token=token, _external=True)}"><button style="background-color: #3f3fff; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold">Reset your password</button></a>
+
+<p>This request was made on {user_time} from a {user_agent.platform} device using {user_agent.browser} and will be valid for 24 hours.</p>
+
+<p>If you did not request a new password, you can safely ignore this email or <a href="mailto:paper-planes.herokuapp@outlook.com">contact us</a> for support.</p>
+
+<p>— The Paper Planes team</p>
+'''
+    mail = Mail(create_app())
+    mail.send(msg)
+
+
+@blueprint.route("/reset_password", methods=['GET', 'POST'])
+def reset_request():
+
+    if current_user.is_authenticated:
+        return redirect(url_for('routes.index'))
+
+    # Get user browser/platform/time details for email
+    user_agent = request.user_agent
+    user_local_time = datetime.now()
+    user_formatted_time = user_local_time.strftime('%b %d at %-I:%M %p')
+
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+
+        # Send password reset if an account exists for the provided email
+        if user:
+            send_reset_email(user, user_agent, user_formatted_time)
+
+        # Simulate delay of sending an email to prevent enumeration attacks
+        else:
+            time.sleep(4)
+
+        flash('If an account exists for this email, we will shortly send a link to reset the password', 'info')
+        return redirect(url_for('authentication.login'))
+
+    return render_template('reset_request.html', title='Reset password', form=form)
+
+
+@blueprint.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+
+    if current_user.is_authenticated:
+        return redirect(url_for('routes.index'))
+
+    user = User.verify_reset_token(token)
+
+    if user is None:
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('authentication.reset_request'))
+
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+
+        # Hash password and create the new user
+        password_hash = generate_password_hash(form.password.data)
+
+        # Store in the database
+        user.password = password_hash
+        db.session.commit()
+
+        flash(
+            f"Your password has been updated! Please log in below.", 'success')
+
+        return redirect(url_for('authentication.login'))
+
+    return render_template('reset_token.html', title='Set new password', form=form)
