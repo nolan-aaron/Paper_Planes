@@ -12,6 +12,7 @@ import pytz
 from ipstack import GeoLookup
 import os
 from requests import get
+import socket
 
 blueprint = Blueprint('authentication', __name__)
 
@@ -117,9 +118,10 @@ def reset_request():
     ACCESS_KEY = '0ebf65cf0f5e120095e3d33dd7c859dc'
     geo_lookup = GeoLookup(ACCESS_KEY)
 
-    # GET USER IP ADDRESS
-    ip_address = request.environ.get('REMOTE_ADDR')
+    # GET USER IP ADDRESS --> FIX THIS, NOT ABLE TO PULL CORRECT IP
     # ip_address = get('https://api.ipify.org').text
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
 
     # GET CITY/REGION DATA BASED ON IP ADDRESS
     location = geo_lookup.get_location(ip_address)
